@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flor-ism · Urban Nature Quest in Issy-les-Moulineaux</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-soft: #0e1116;
+      --accent: #9be15d;
+      --accent-soft: rgba(155, 225, 93, 0.12);
+      --accent-strong: #6ad02a;
+      --text-main: #f5f5f5;
+      --text-muted: #8b94a3;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --card-bg: rgba(10, 13, 18, 0.92);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --shadow-soft: 0 22px 45px rgba(0, 0, 0, 0.52);
+      --shadow-chip: 0 10px 30px rgba(0, 0, 0, 0.5);
+      --blur: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #18212b 0, #050608 60%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(155, 225, 93, 0.08), transparent 55%),
+        radial-gradient(circle at 90% 20%, rgba(74, 222, 128, 0.06), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(56, 189, 248, 0.05), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 20px 72px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #d1fae5, #4ade80);
+      box-shadow: var(--shadow-chip);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-mark::before {
+      content: "";
+      position: absolute;
+      inset: 35% 30%;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 0, 0, 0.4);
+      border-top-color: transparent;
+      border-left-color: transparent;
+      transform: rotate(-18deg);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-text-main {
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .chip-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      border: 1px solid var(--border-subtle);
+      background: rgba(5, 6, 8, 0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.24);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+      gap: 28px;
+      margin-bottom: 44px;
+    }
+
+    .hero-main {
+      padding: 24px 22px 22px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.8), var(--card-bg));
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 12px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.12);
+      border: 1px solid rgba(45, 212, 191, 0.35);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-badge span {
+      font-weight: 500;
+    }
+
+    .hero-tagline {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 4vw, 3rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .hero-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.06);
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-highlight strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-description {
+      font-size: 0.95rem;
+      color: #cbd5f5;
+      max-width: 90%;
+      margin-bottom: 20px;
+    }
+
+    .hero-description span {
+      color: var(--accent-strong);
+      font-weight: 500;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 0.9rem;
+      font-weight: 550;
+      background: radial-gradient(circle at 30% 0, #bbf7d0, #4ade80);
+      color: #052e16;
+      box-shadow: 0 20px 40px rgba(34, 197, 94, 0.55);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 150ms ease-out, box-shadow 150ms ease-out,
+        filter 150ms ease-out;
+    }
+
+    .btn-primary span.arrow {
+      font-size: 1rem;
+      transform: translateY(1px);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 26px 52px rgba(22, 163, 74, 0.7);
+      filter: brightness(1.03);
+    }
+
+    .btn-secondary {
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 0.86rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: border-color 150ms ease-out, background 150ms ease-out,
+        color 150ms ease-out;
+    }
+
+    .btn-secondary-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(51, 65, 85, 0.9);
+    }
+
+    .meta-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+      color: #9ca3af;
+    }
+
+    .meta-value {
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .hero-orbit::before,
+    .hero-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.28);
+      width: 280px;
+      height: 280px;
+      top: 60%;
+      right: -40px;
+      transform: translateY(-50%);
+      animation: orbit 16s linear infinite;
+    }
+
+    .hero-orbit::after {
+      width: 220px;
+      height: 220px;
+      border-style: solid;
+      border-color: rgba(74, 222, 128, 0.35);
+      top: 56%;
+      right: 20px;
+      animation-duration: 22s;
+      animation-direction: reverse;
+    }
+
+    .hero-stamp-badge {
+      position: absolute;
+      right: 26px;
+      top: 26px;
+      width: 88px;
+      height: 88px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      background: radial-gradient(circle at 30% 20%, #bbf7d0, #16a34a);
+      box-shadow: 0 20px 40px rgba(22, 163, 74, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 550;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #052e16;
+      transform: rotate(-16deg);
+    }
+
+    .hero-stamp-badge span {
+      display: block;
+      font-size: 0.6rem;
+      margin-top: 4px;
+      letter-spacing: 0.18em;
+      opacity: 0.8;
+    }
+
+    .hero-side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: rgba(5, 7, 11, 0.96);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+      padding: 18px 16px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0,
+        rgba(155, 225, 93, 0.08),
+        transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #e5e7eb;
+    }
+
+    .card-eyebrow {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .card-body {
+      font-size: 0.86rem;
+      color: #cbd5f5;
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .progress-bar-shell {
+      flex: 1;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(31, 41, 55, 0.9);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      position: absolute;
+      inset: 0;
+      width: 72%;
+      border-radius: inherit;
+      background: linear-gradient(to right, #22c55e, #a3e635);
+    }
+
+    .progress-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #e5e7eb;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+      gap: 24px;
+    }
+
+    .section {
+      margin-top: 12px;
+      border-radius: var(--radius-xl);
+      background: rgba(8, 11, 18, 0.96);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 22px 18px 18px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 90% 0,
+        rgba(96, 165, 250, 0.10),
+        transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .section-tag {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .section-body {
+      font-size: 0.88rem;
+      color: #e5e7eb;
+    }
+
+    .section-body p + p {
+      margin-top: 8px;
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .how-step {
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(15, 23, 42, 0.86);
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-index {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.22);
+      border: 1px solid rgba(45, 212, 191, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #a5f3fc;
+    }
+
+    .step-title {
+      font-size: 0.85rem;
+      font-weight: 550;
+    }
+
+    .step-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .reward-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .reward-item {
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.7);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      font-size: 0.82rem;
+    }
+
+    .reward-label {
+      font-weight: 500;
+    }
+
+    .reward-pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.16);
+      color: #bbf7d0;
+      font-size: 0.74rem;
+    }
+
+    .map-card {
+      margin-top: 12px;
+      border-radius: 18px;
+      padding: 14px 14px 12px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .map-title {
+      font-size: 0.9rem;
+      font-weight: 550;
+    }
+
+    .map-tag {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .map-body {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .map-placeholder {
+      border-radius: 12px;
+      border: 1px dashed rgba(75, 85, 99, 0.9);
+      height: 130px;
+      background-image: linear-gradient(
+        120deg,
+        rgba(55, 65, 81, 0.4),
+        transparent 40%,
+        rgba(55, 65, 81, 0.4),
+        transparent 75%
+      );
+      background-size: 220% 100%;
+      animation: shimmer 3.4s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-pin {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.85);
+      font-size: 0.74rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #e5e7eb;
+    }
+
+    .map-pin-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 2px solid #f97316;
+      box-shadow: 0 0 0 4px rgba(248, 150, 69, 0.25);
+    }
+
+    .info-list {
+      margin-top: 10px;
+      display: grid;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .info-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .info-label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+      color: #9ca3af;
+    }
+
+    .info-value {
+      text-align: right;
+    }
+
+    footer {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-link {
+      padding: 3px 0;
+      border-bottom: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .footer-link:hover {
+      border-color: rgba(148, 163, 184, 0.8);
+    }
+
+    @keyframes orbit {
+      0% {
+        transform: translateY(-50%) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 120% 0;
+      }
+      100% {
+        background-position: -120% 0;
+      }
+    }
+
+    @media (max-width: 880px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .chip-row {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-main {
+        padding-right: 22px;
+      }
+
+      .hero-stamp-badge {
+        width: 80px;
+        height: 80px;
+        right: 18px;
+        top: 22px;
+      }
+
+      .hero-orbit {
+        opacity: 0.3;
+      }
+
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 20px 16px 40px;
+      }
+
+      .hero-main {
+        padding: 18px 16px 16px;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+      }
+
+      .hero-description {
+        max-width: 100%;
+      }
+
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section {
+        padding: 18px 14px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">
+        <div class="logo-mark"></div>
+        <div class="logo-text">
+          <div class="logo-text-main">Flor-ism</div>
+          <div class="logo-text-sub">Urban Nature · Issy-les-Moulineaux</div>
+        </div>
+      </div>
+      <div class="chip-row">
+        <div class="chip">
+          <span class="chip-dot"></span>
+          <span>Pre-launch preview</span>
+        </div>
+        <div class="chip">
+          <span>Sign-up opens soon</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-orbit"></div>
+        <div class="hero-stamp-badge">
+          Plant
+          <br />Passport
+          <span>Stamp &amp; Win</span>
+        </div>
+
+        <div class="hero-badge-row">
+          <div class="hero-badge">
+            <span>New</span>
+            · Ecological treasure hunt
+          </div>
+          <div class="hero-tagline">
+            A playful way to meet the plants of Issy-les-Moulineaux.
+          </div>
+        </div>
+
+        <h1>Flor-ism</h1>
+
+        <div class="hero-highlight">
+          For families, friends, schools, and curious city wanderers.
+        </div>
+
+        <p class="hero-description">
+          Flor-ism is a guided plant quest in the park of
+          <span>Issy-les-Moulineaux</span>. Explore, identify and stamp your
+          way through a curated route of local species while learning how
+          everyday plants keep the city alive.
+        </p>
+
+        <div class="hero-cta-row">
+          <button class="btn-primary">
+            Get early access
+            <span class="arrow">↗</span>
+          </button>
+          <button class="btn-secondary">
+            <span class="btn-secondary-dot"></span>
+            Notify me when the date is announced
+          </button>
+        </div>
+
+        <div class="hero-meta">
+          <div class="meta-item">
+            <span class="meta-label">Location</span>
+            <span class="meta-value">Park · Issy-les-Moulineaux</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Format</span>
+            <span class="meta-value">Plant hunt · Stamp card · Rewards</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Date</span>
+            <span class="meta-value">To be announced</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="card">
+          <div class="card-title-row">
+            <div class="card-title">What is Flor-ism?</div>
+            <div class="card-eyebrow">Preview</div>
+          </div>
+          <div class="card-body">
+            A one-day outdoor route where you:
+            <ul style="margin-top: 6px; padding-left: 18px;">
+              <li>Follow a plant map across the park</li>
+              <li>Find marked species and stamp your card</li>
+              <li>Unlock small rewards for every tier you reach</li>
+            </ul>
+
+            <div class="progress-row">
+              <div class="progress-bar-shell">
+                <div class="progress-bar-fill"></div>
+              </div>
+              <div class="progress-label">Concept 72% revealed</div>
+            </div>
+
+            <div class="pill-row">
+              <div class="pill">
+                <span class="pill-dot"></span>
+                Ecology explained simply
+              </div>
+              <div class="pill">
+                <span class="pill-dot"></span>
+                For all ages
+              </div>
+              <div class="pill">
+                <span class="pill-dot"></span>
+                Light, screen-free gameplay
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding-bottom: 12px;">
+          <div class="card-title-row">
+            <div class="card-title">Who is it for?</div>
+            <div class="card-eyebrow">Audience</div>
+          </div>
+          <div class="card-body">
+            Designed for:
+            <ul style="margin-top: 6px; padding-left: 18px;">
+              <li>Families looking for a slow, green weekend activity</li>
+              <li>School groups exploring urban biodiversity</li>
+              <li>Residents who want to know the plants they walk by daily</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <main>
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">How it works</h2>
+          <div class="section-tag">Plant quest · Stamp card · Rewards</div>
+        </div>
+        <div class="section-body">
+          <p>
+            During Flor-ism, the park becomes a mapped field guide. Every
+            checkpoint introduces one plant, one story, and one simple action
+            you can take to protect urban ecosystems.
+          </p>
+
+          <div class="how-grid">
+            <div class="how-step">
+              <div class="step-index">1</div>
+              <div>
+                <div class="step-title">Collect your plant passport</div>
+                <div class="step-text">
+                  At the welcome point, receive a map and a Flor-ism stamp
+                  card. Each empty circle represents one plant you can find.
+                </div>
+              </div>
+            </div>
+            <div class="how-step">
+              <div class="step-index">2</div>
+              <div>
+                <div class="step-title">Follow the trail</div>
+                <div class="step-text">
+                  Walk through the park to locate highlighted trees, shrubs,
+                  herbs, and ground plants. Clear markers and simple clues
+                  guide you.
+                </div>
+              </div>
+            </div>
+            <div class="how-step">
+              <div class="step-index">3</div>
+              <div>
+                <div class="step-title">Stamp &amp; learn</div>
+                <div class="step-text">
+                  At each plant station, stamp your card and read concise
+                  panels about pollinators, soil, water cycles, and how this
+                  species supports the city.
+                </div>
+              </div>
+            </div>
+            <div class="how-step">
+              <div class="step-index">4</div>
+              <div>
+                <div class="step-title">Reach reward tiers</div>
+                <div class="step-text">
+                  Return to the welcome point to redeem eco-themed rewards
+                  depending on how many plants you found.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reward-grid">
+            <div class="reward-item">
+              <div class="reward-label">5+ plants discovered</div>
+              <div class="reward-pill">Starter badge · Mini fact sheet</div>
+            </div>
+            <div class="reward-item">
+              <div class="reward-label">10+ plants discovered</div>
+              <div class="reward-pill">Sticker set · Seed surprise*</div>
+            </div>
+            <div class="reward-item">
+              <div class="reward-label">15+ plants discovered</div>
+              <div class="reward-pill">Limited Flor-ism token</div>
+            </div>
+          </div>
+
+          <p style="margin-top: 10px; font-size: 0.75rem; color: var(--text-muted);">
+            *Rewards will focus on local species and responsible, small-scale
+            planting.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Place &amp; timing</h2>
+          <div class="section-tag">Issy-les-Moulineaux · France</div>
+        </div>
+        <div class="section-body">
+          <p>
+            Flor-ism will take place in a park in Issy-les-Moulineaux.
+            Exact date, time, and park entrance details will be confirmed
+            soon.
+          </p>
+
+          <div class="map-card">
+            <div class="map-header">
+              <div class="map-title">Upcoming location reveal</div>
+              <div class="map-tag">Map preview</div>
+            </div>
+            <div class="map-body">
+              A focused route inside the park, optimized for a slow
+              60–90 minute walk with pauses at every plant station.
+            </div>
+            <div class="map-placeholder">
+              <div class="map-pin">
+                <div class="map-pin-icon"></div>
+                <span>Issy-les-Moulineaux · Park area</span>
+              </div>
+            </div>
+
+            <div class="info-list">
+              <div class="info-line">
+                <div class="info-label">Date</div>
+                <div class="info-value">To be announced</div>
+              </div>
+              <div class="info-line">
+                <div class="info-label">Duration</div>
+                <div class="info-value">Visit window planned for 3–4 hours</div>
+              </div>
+              <div class="info-line">
+                <div class="info-label">Languages</div>
+                <div class="info-value">English &amp; French materials</div>
+              </div>
+              <div class="info-line">
+                <div class="info-label">Access</div>
+                <div class="info-value">Family-friendly · Free entry</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="margin-top: 12px; font-size: 0.82rem; color: var(--text-muted);">
+            Leave your email during pre-launch to receive the confirmed date,
+            exact location in the park, and download links for the plant
+            passport.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© Flor-ism · Urban nature quest in Issy-les-Moulineaux</div>
+      <div class="footer-links">
+        <span class="footer-link">Early access mailing list</span>
+        <span class="footer-link">Schools &amp; groups</span>
+        <span class="footer-link">Partners &amp; sponsors</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
